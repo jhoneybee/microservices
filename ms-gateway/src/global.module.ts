@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+
+import { ControllerModule } from './controller/module'
+import { AuthGuard } from './guard/auth.guard'
 
 const TypeORMImport = TypeOrmModule.forRoot({
   type: 'mysql',
@@ -17,8 +21,18 @@ const ConfigImport = ConfigModule.forRoot({
   envFilePath: '.env',
 });
 
+const GUARD_Provider = {
+  provide: APP_GUARD,
+  useClass: AuthGuard,
+}
+
 @Module({
-  imports: [ConfigImport,TypeORMImport],
-  providers: [],
+  imports: [
+    ConfigImport,
+    ControllerModule,
+  ],
+  providers: [
+    GUARD_Provider
+  ]
 })
 export class GlobalModule {}
