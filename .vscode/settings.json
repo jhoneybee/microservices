@@ -1,0 +1,7 @@
+{
+    "git.ignoreLimitWarning": true,
+    "deepscan.enable": true,
+    "eslint.workingDirectories": [
+        "ms-gateway"
+    ]
+}
