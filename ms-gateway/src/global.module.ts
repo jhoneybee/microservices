@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule } from '@nestjs/config'
+import { APP_GUARD } from '@nestjs/core'
 
 import { ControllerModule } from './controller/module'
 import { AuthGuard } from './guard/auth.guard'
@@ -19,7 +19,7 @@ const TypeORMImport = TypeOrmModule.forRoot({
 
 const ConfigImport = ConfigModule.forRoot({
   envFilePath: '.env',
-});
+})
 
 const GUARD_Provider = {
   provide: APP_GUARD,
@@ -29,6 +29,7 @@ const GUARD_Provider = {
 @Module({
   imports: [
     ConfigImport,
+    // TypeORMImport,
     ControllerModule,
   ],
   providers: [
